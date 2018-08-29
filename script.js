@@ -13,6 +13,9 @@
 var selectedCity = "Tucson, AZ";
 var weatherReport;
 
+
+// getWeather called on load event for default city (Tucson)
+// or button clicked to selected city
 function getWeather(evt) {
    var latitude;
    var longitude;
@@ -34,8 +37,9 @@ function getWeather(evt) {
       longitude = -73.7120832;
    }
 }
-
+// Retrieve location of cities form the page
 var locations = document.querySelectorAll("section ul li");
+// Add click event listeners to <li> (cities)
 for (var i = 0; i < locations.length; i++) {
    if (locations[i].addEventListener) {
       locations[i].addEventListener("click", getWeather, false);
@@ -43,6 +47,8 @@ for (var i = 0; i < locations.length; i++) {
       locations[i].attachEvent("onclick", getWeather);
    }
 }
+
+// event listeners on load - call getWeather();
 if (window.addEventListener) {
    window.addEventListener("load", getWeather, false);
 } else if (window.attachEvent) {
