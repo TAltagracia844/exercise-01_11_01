@@ -12,7 +12,16 @@
 // global variables
 var selectedCity = "Tucson, AZ";
 var weatherReport;
+// http request global variable
+var httpRequest = false; //XHR Object
+console.log("fred");
+//Function to instantiate XHR object
+function getRequestObject(){
+    alert(getRequestObject());
+}
 
+// getWeather called on load event for default city (Tucson)
+// or button clicked to selected city
 function getWeather(evt) {
    var latitude;
    var longitude;
@@ -33,9 +42,13 @@ function getWeather(evt) {
       latitude = 45.5601062;
       longitude = -73.7120832;
    }
+   if(!httpRequest){
+       httpRequest = getRequestObject();
+   }
 }
-
+// Retrieve location of cities form the page
 var locations = document.querySelectorAll("section ul li");
+// Add click event listeners to <li> (cities)
 for (var i = 0; i < locations.length; i++) {
    if (locations[i].addEventListener) {
       locations[i].addEventListener("click", getWeather, false);
@@ -43,6 +56,8 @@ for (var i = 0; i < locations.length; i++) {
       locations[i].attachEvent("onclick", getWeather);
    }
 }
+
+// event listeners on load - call getWeather();
 if (window.addEventListener) {
    window.addEventListener("load", getWeather, false);
 } else if (window.attachEvent) {
